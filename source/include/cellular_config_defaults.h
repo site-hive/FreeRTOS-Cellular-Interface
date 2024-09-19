@@ -509,11 +509,13 @@
  * The pktio read buffer size should be configured to greater than the maximum AT command
  * response size, which is typically the TCP socket receive command response packet size.
  *
+ * This should be larger than TCP and MQTT packet size.
+ *
  * <b>Possible values:</b>`Any positive integer`<br>
- * <b>Default value (if undefined):</b> 1600
+ * <b>Default value (if undefined):</b> 3100
  */
 #ifndef CELLULAR_CONFIG_PKTIO_READ_BUFFER_SIZE
-    #define CELLULAR_CONFIG_PKTIO_READ_BUFFER_SIZE    1600U
+    #define CELLULAR_CONFIG_PKTIO_READ_BUFFER_SIZE    3100U
 #endif
 
 /**
