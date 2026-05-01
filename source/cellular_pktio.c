@@ -636,7 +636,14 @@ static char * _Cellular_ReadLine( CellularContext_t * pContext,
             /* Add a NULL after the bytesRead. This is required for further processing. */
             pRead[ bytesRead ] = '\0';
 
-            LogDebug( ( "AT Read %u bytes, data[%p]", ( unsigned int ) bytesRead, pRead ) );
+            if (bytesRead > 50)
+            {
+                LogDebug( ( "AT Read %u bytes, data(0-%zu): %.50s", ( unsigned int ) bytesRead, 50, pRead ) );
+            }
+            else
+            {
+                LogDebug( ( "AT Read %u bytes, data(0-%zu): %s", ( unsigned int ) bytesRead, bytesRead, pRead ) );
+            }
             /* Set the pBytesRead only when actual bytes read from comm interface. */
             *pBytesRead = bytesRead + partialDataRead;
 
