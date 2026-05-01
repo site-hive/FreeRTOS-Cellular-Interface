@@ -565,6 +565,22 @@ CellularError_t Cellular_GetHostByName( CellularHandle_t cellularHandle,
                                         char * pResolvedAddress );
 
 /**
+ * @brief Send a single ICMP ping and return the raw modem result code.
+ *
+ * @param[in] cellularHandle The opaque cellular context pointer created by Cellular_Init.
+ * @param[in] contextId PDP context ID to use for the ping.
+ * @param[in] pHost Null-terminated IP address string to ping (e.g. "8.8.8.8").
+ * @param[in] timeoutS Per-ping timeout in seconds passed to AT+QPING.
+ *
+ * @return 0 on success, modem error code on failure (e.g. 565, 569), or -1 if
+ *         the AT command failed or the URC was not received within timeoutS + 2 s.
+ */
+int32_t Cellular_Ping( CellularHandle_t cellularHandle,
+                       uint8_t contextId,
+                       const char * pHost,
+                       uint32_t timeoutS );
+
+/**
  * @brief Set options for a socket.
  *
  * @param[in] cellularHandle The opaque cellular context pointer created by Cellular_Init.
